@@ -15,23 +15,19 @@ func main() {
 }
 
 func twoSum(nums []int, target int) []int {
-	hashMap := make(map[int]int)
-	var response []int
+    	mapNums := map[int]int{}
 
-	for i, num := range nums {
-		hashMap[num] = i
+	if len(nums) < 3 {
+		return []int{0, 1}
 	}
 
-	for i, num := range nums {
-		y := target - num
-		n, ok := hashMap[y]
-
-		if ok && i != n {
-			response = append(response, i)
-			response = append(response, n)
-			break
+	for i, val := range nums {
+		c := target - val
+		if idx, ok := mapNums[c]; ok {
+			return []int{idx, i}
 		}
+		mapNums[val] = i
 	}
 
-	return response
+	return []int{}
 }
